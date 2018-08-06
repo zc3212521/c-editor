@@ -4,10 +4,10 @@ import {
     Redirect
 } from 'react-router-dom'
 
-// import TopicList from '../views/topicList/index'
-// import TopicDetail from '../views/topicDetail/index'
+import draft from '../views/draft/index'
 import imaDrop from '../views/imaDrop/index'
 
 export default () => [
-    <Route path="/" component={imaDrop} key="detail"/>
+    <Route path="/" component={imaDrop} key="detail" exact/>,
+    <Route path="/draft" component={draft} key="draft"/>,
 ]
