@@ -7,4 +7,5 @@
 /coverage
 
 # production
+/dist
 /.idea
