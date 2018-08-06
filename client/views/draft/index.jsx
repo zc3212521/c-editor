@@ -107,11 +107,14 @@ const styles = {
         padding: '2px 0',
     },
     media: {
-        maxWidth: '80%',
+        maxWidth: '100%',
         // Fix an issue with Firefox rendering video controls
         // with 'pre-wrap' white-space
         whiteSpace: 'initial'
     },
+    mediaWrap: {
+        maxWidth: '80%',
+    }
 };
 
 export default class CustomImageEditor extends Component {
@@ -195,7 +198,7 @@ const Audio = (props) => {
 const Image = (props) => {
     console.log(555, props)
     return (
-        <div>
+        <div style={styles.mediaWrap}>
             <img src={props.src} style={styles.media} />
         </div>
     );
@@ -206,12 +209,15 @@ const Video = (props) => {
 };
 
 const Media = (props) => {
+    console.log(111, props)
     const entity = props.contentState.getEntity(
         props.block.getEntityAt(0)
     );
     const {src} = entity.getData();
+    const {size} = entity.getData();
     const type = entity.getType();
 
+    console.log(222, size)
     let media;
     if (type === 'audio') {
         media = <Audio src={src} />;
