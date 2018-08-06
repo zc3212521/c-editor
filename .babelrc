@@ -1,0 +1,23 @@
+{
+  "presets": [
+    "env",
+    "stage-1",
+    "react"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "react-hot-loader/babel",
+    "transform-runtime",
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "lib",
+      "style": true
+    }],
+    ["transform-imports", {
+      "lodash": {
+        "transform": "lodash/${member}",
+        "preventFullImport": true
+      }
+    }]
+  ]
+}

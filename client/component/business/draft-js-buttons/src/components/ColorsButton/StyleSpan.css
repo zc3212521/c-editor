@@ -1,0 +1,10 @@
+.colorSpan{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    top: 3px;
+    position: relative;
+    border-radius: 3px;
+    margin: 0px 5px;
+}
