@@ -30,7 +30,11 @@ const config = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader','css-loader','sass-loader']
+                use: [
+                    'style-loader',
+                    'css-loader?modules&localIdentName=[name]-[local]-[hash:base64:5]&minimize',
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -7,6 +7,8 @@ import {
     EditorState,
 } from 'draft-js';
 
+import ImgDec from 'component/decorators/img'
+
 const initialState = {
     "entityMap": {
         "0": {
@@ -222,7 +224,7 @@ const Media = (props) => {
     if (type === 'audio') {
         media = <Audio src={src} />;
     } else if (type === 'image') {
-        media = <Image src={src} />;
+        media = <ImgDec src={src} />;
     } else if (type === 'video') {
         media = <Video src={src} />;
     }
