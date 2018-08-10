@@ -170,7 +170,7 @@ export default class CustomImageEditor extends Component {
         const {editorState} = this.state;
         const contentState = editorState.getCurrentContent();
         const contentStateWithEntity = contentState.createEntity(
-            'image-custom',
+            'IMG',
             'IMMUTABLE',
             {src: "https://wscdn.ql1d.com/31999134935610288861.jpg"}
         );
@@ -221,7 +221,7 @@ export default class CustomImageEditor extends Component {
 }
 
 function mediaBlockRenderer(block) {
-    console.log(888, block.getType())
+    console.log(888, block.getType(), block.getEntityAt(0))
     if (block.getType() === 'atomic') {
         return {
             component: Media,
@@ -234,13 +234,6 @@ function mediaBlockRenderer(block) {
 
 const Audio = (props) => {
     return <audio controls src={props.src} style={styles.media} />;
-};
-
-const Image = (props) => {
-    console.log(555, props)
-    return (
-        <img src='https://wscdn.ql1d.com/31999134935610288861.jpg' style={styles.media} />
-    );
 };
 
 const Video = (props) => {
