@@ -5,6 +5,7 @@ import {
     CompositeDecorator,
     Editor,
     EditorState,
+    AtomicBlockUtils,
 } from 'draft-js';
 
 import ImgDec from 'component/decorators/img'
@@ -123,7 +124,8 @@ export default class CustomImageEditor extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            editorState: EditorState.createWithContent(convertFromRaw(initialState)),
+            // editorState: EditorState.createWithContent(convertFromRaw(initialState)),
+            editorState: EditorState.createEmpty(),
         }
 
         // const decorator = new CompositeDecorator([
@@ -142,7 +144,11 @@ export default class CustomImageEditor extends Component {
         // ]);
 
         this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = (editorState) => {
+            this.setState({editorState})
+            const content = this.state.editorState.getCurrentContent();
+            console.log(convertToRaw(content));
+        };
         this.logState = () => {
             const content = this.state.editorState.getCurrentContent();
             console.log(convertToRaw(content));
@@ -158,6 +164,32 @@ export default class CustomImageEditor extends Component {
     focus = () => {
         this.editor.focus();
     };
+
+    addImg = (e) => {
+        e.preventDefault();
+        const {editorState} = this.state;
+        const contentState = editorState.getCurrentContent();
+        const contentStateWithEntity = contentState.createEntity(
+            'image-custom',
+            'IMMUTABLE',
+            {src: "https://wscdn.ql1d.com/31999134935610288861.jpg"}
+        );
+        const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+        const newEditorState = EditorState.set(
+            editorState,
+            {currentContent: contentStateWithEntity}
+        );
+
+        this.setState({
+            editorState: AtomicBlockUtils.insertAtomicBlock(
+                newEditorState,
+                entityKey,
+                ' '
+            )
+        }, () => {
+            setTimeout(() => this.focus(), 0);
+        });
+    }
 
     render() {
         return (
@@ -177,12 +209,19 @@ export default class CustomImageEditor extends Component {
                     type="button"
                     value="Log State"
                 />
+                <input
+                    onClick={this.addImg}
+                    style={styles.button}
+                    type="button"
+                    value="add img"
+                />
             </div>
         );
     }
 }
 
 function mediaBlockRenderer(block) {
+    console.log(888, block.getType())
     if (block.getType() === 'atomic') {
         return {
             component: Media,
@@ -200,9 +239,7 @@ const Audio = (props) => {
 const Image = (props) => {
     console.log(555, props)
     return (
-        <div style={styles.mediaWrap}>
-            <img src={props.src} style={styles.media} />
-        </div>
+        <img src='https://wscdn.ql1d.com/31999134935610288861.jpg' style={styles.media} />
     );
 };
 
@@ -211,7 +248,7 @@ const Video = (props) => {
 };
 
 const Media = (props) => {
-    console.log(111, props)
+    // console.log(111, props)
     const entity = props.contentState.getEntity(
         props.block.getEntityAt(0)
     );
@@ -219,12 +256,12 @@ const Media = (props) => {
     const {size} = entity.getData();
     const type = entity.getType();
 
-    console.log(222, size)
+    // console.log(222, size)
     let media;
     if (type === 'audio') {
         media = <Audio src={src} />;
-    } else if (type === 'image') {
-        media = <ImgDec src={src} />;
+    } else if (type === 'image-custom') {
+        media = <ImgDec src={src} />
     } else if (type === 'video') {
         media = <Video src={src} />;
     }

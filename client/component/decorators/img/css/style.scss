@@ -1,6 +1,6 @@
 .wrap {
     position: relative;
-    max-width: 600px;
+    max-width: 90%;
     min-width: 200px;
     margin: 10px auto;
     overflow: hidden;
@@ -32,15 +32,17 @@
         height: 40px;
         width: 7px;
         border: 2px solid #fff;
-        background-color: olivedrab;
+        background-color: transparent;
         border-radius: 7px;
         position: absolute;
         top: 50%;
         margin-top: -20px;
+        display:none
     }
 
-    .hide {
-        display:none;
+    .active {
+        display: inline-block;
+        background-color: olivedrab;
     }
 
     .drag-children-left {

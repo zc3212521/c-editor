@@ -8,6 +8,6 @@ import draft from '../views/draft/index'
 import imaDrop from '../views/imaDrop/index'
 
 export default () => [
-    <Route path="/" component={imaDrop} key="detail" exact/>,
-    <Route path="/draft" component={draft} key="draft"/>,
+    <Route path="/" component={ draft} key="detail" exact/>,
+    <Route path="/draft" component={imaDrop} key="draft"/>,
 ]

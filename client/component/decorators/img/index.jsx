@@ -8,7 +8,7 @@ export default class imgDec extends React.Component {
         super(props)
         this.state = {
             showLDrag: false,
-            showRDrag: false,
+            activeRDrag: false,
             startDrag: false,
             startX: "",
             imgWidth: 600,
@@ -27,10 +27,10 @@ export default class imgDec extends React.Component {
         })
     }
 
-    showRDrag = (e) => {
+    activeRDrag = (e) => {
         e.preventDefault()
         this.setState({
-            showRDrag: true
+            activeRDrag: true
         })
     }
 
@@ -62,7 +62,7 @@ export default class imgDec extends React.Component {
         e.preventDefault()
         this.setState({
             startDrag: false,
-            showRDrag: false,
+            activeRDrag: false,
         })
     }
 
@@ -85,7 +85,7 @@ export default class imgDec extends React.Component {
     }
 
     render() {
-        const rDragStyle = this.state.showRDrag ? null : {hide: true}
+        const rDragStyle = this.state.activeRDrag ? {[style.active]: true} : null
 
         return (
             <div
@@ -99,7 +99,7 @@ export default class imgDec extends React.Component {
                 </div>
                 <div
                     className={classNames(style.right, style.drag)}
-                    onMouseOver={this.showRDrag}
+                    onMouseOver={this.activeRDrag}
                     onMouseLeave={this.hideRDrag}
                     onMouseDown={this.startDrag}
                     onMouseUp={this.endDrag}
@@ -108,6 +108,7 @@ export default class imgDec extends React.Component {
                     <div
                         ref={this.dragRButtonRef}
                         className={classNames(style["drag-children"], style["drag-children-right"], rDragStyle)}
+                        style={{display: this.state.showOption ? 'inline-block' : "none"}}
                     />
                 </div>
                 <div className={classNames(style["img-remove"], {[style["show-option"]]: this.state.showOption})}>
