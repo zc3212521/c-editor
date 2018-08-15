@@ -9,7 +9,8 @@ import {
     RichUtils
 } from 'draft-js';
 
-import ImgDec from 'component/decorators/img'
+import blockRenderFn from "./blockRenderFn"
+
 
 const initialState = {
     "entityMap": {
@@ -205,7 +206,7 @@ export default class CustomImageEditor extends Component {
             <div style={styles.root}>
                 <div style={styles.editor} onClick={this.focus}>
                     <Editor
-                        blockRendererFn={mediaBlockRenderer}
+                        blockRendererFn={blockRenderFn}
                         editorState={this.state.editorState}
                         onChange={this.onChange}
                         handleKeyCommand={this._handleKeyCommand}
@@ -229,45 +230,3 @@ export default class CustomImageEditor extends Component {
         );
     }
 }
-
-function mediaBlockRenderer(block) {
-    console.log(888, block.getType(), block.getEntityAt(0))
-    if (block.getType() === 'atomic') {
-        return {
-            component: Media,
-            editable: false,
-        };
-    }
-
-    return null;
-}
-
-const Audio = (props) => {
-    return <audio controls src={props.src} style={styles.media} />;
-};
-
-const Video = (props) => {
-    return <video controls src={props.src} style={styles.media} />;
-};
-
-const Media = (props) => {
-    // console.log(111, props)
-    const entity = props.contentState.getEntity(
-        props.block.getEntityAt(0)
-    );
-    const {src} = entity.getData();
-    const {size} = entity.getData();
-    const type = entity.getType();
-
-    // console.log(222, size)
-    let media;
-    if (type === 'audio') {
-        media = <Audio src={src} />;
-    } else if (type === 'image-custom') {
-        media = <ImgDec src={src} />
-    } else if (type === 'video') {
-        media = <Video src={src} />;
-    }
-
-    return media;
-};
