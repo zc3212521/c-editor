@@ -6,6 +6,7 @@ import {
     Editor,
     EditorState,
     AtomicBlockUtils,
+    RichUtils
 } from 'draft-js';
 
 import ImgDec from 'component/decorators/img'
@@ -153,6 +154,14 @@ export default class CustomImageEditor extends Component {
             const content = this.state.editorState.getCurrentContent();
             console.log(convertToRaw(content));
         };
+
+        this._handleKeyCommand = (command, editorState) => {
+            var newState = RichUtils.handleKeyCommand(editorState, command);
+            if (newState) {
+                this.onChange(newState);
+                return true;
+            }
+        }
     }
 
     onChange = (editorState) => {
@@ -199,6 +208,7 @@ export default class CustomImageEditor extends Component {
                         blockRendererFn={mediaBlockRenderer}
                         editorState={this.state.editorState}
                         onChange={this.onChange}
+                        handleKeyCommand={this._handleKeyCommand}
                         placeholder="Enter some text..."
                         ref="editor"
                     />
