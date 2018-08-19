@@ -82,6 +82,7 @@ export default class imgDec extends React.Component {
 
     remove = () => {
         console.log("remove this image")
+        this.props.remove(this.props.block.getKey());
     }
 
     render() {

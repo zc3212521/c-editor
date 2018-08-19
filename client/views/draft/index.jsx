@@ -9,8 +9,9 @@ import {
     RichUtils
 } from 'draft-js';
 
-import blockRenderFn from "./blockRenderFn"
+import Media from "../../component/decorators/media/Media"
 
+import {removeImgBlock} from "./util/removeImgBlock"
 
 const initialState = {
     "entityMap": {
@@ -156,6 +157,34 @@ export default class CustomImageEditor extends Component {
             console.log(convertToRaw(content));
         };
 
+        this.blockRenderer = (block) => {
+            if (block.getType() === 'atomic') {
+                return {
+                    component: Media,
+                    editable: false,
+                    props: {
+                        onChangeSize: (blockKey, newContentState) => {
+                            // var {liveTeXEdits} = this.state;
+                            // this.setState({
+                            //     liveTeXEdits: liveTeXEdits.remove(blockKey),
+                            //     editorState:EditorState.createWithContent(newContentState),
+                            // });
+                        },
+                        onRemove: (blockKey, newContentState) => this.removeImg(blockKey, newContentState),
+                    },
+                };
+            }
+
+            return null;
+        }
+
+        this.removeImg = (blockKey) => {
+            var {editorState} = this.state;
+            this.setState({
+                editorState: removeImgBlock(editorState, blockKey),
+            });
+        };
+
         this._handleKeyCommand = (command, editorState) => {
             var newState = RichUtils.handleKeyCommand(editorState, command);
             if (newState) {
@@ -206,7 +235,7 @@ export default class CustomImageEditor extends Component {
             <div style={styles.root}>
                 <div style={styles.editor} onClick={this.focus}>
                     <Editor
-                        blockRendererFn={blockRenderFn}
+                        blockRendererFn={this.blockRenderer}
                         editorState={this.state.editorState}
                         onChange={this.onChange}
                         handleKeyCommand={this._handleKeyCommand}
