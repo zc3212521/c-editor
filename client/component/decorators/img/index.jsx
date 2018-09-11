@@ -15,6 +15,12 @@ export default class imgDec extends React.Component {
             imgCurrentWidth: 600,
             showOption: false,
         }
+
+         this.entity = props.contentState.getEntity(
+            props.block.getEntityAt(0)
+        );
+        this.src = this.entity.getData().src;
+        console.log(2323, props)
     }
 
     componentDidMount() {
@@ -42,11 +48,14 @@ export default class imgDec extends React.Component {
         })
     }
 
-    endDrag = () => {
+    endDrag = (e) => {
+        e.preventDefault()
         this.setState({
             startDrag: false,
             imgCurrentWidth: this.state.imgWidth
         })
+        this.props.blockProps.onChangeSize(this.props.block.getKey(), this.state.imgWidth);
+
     }
 
     move = (e) => {
@@ -82,7 +91,7 @@ export default class imgDec extends React.Component {
 
     remove = () => {
         console.log("remove this image")
-        this.props.remove(this.props.block.getKey());
+        this.props.blockProps.onRemove(this.props.block.getKey());
     }
 
     render() {
@@ -96,7 +105,7 @@ export default class imgDec extends React.Component {
                 onMouseLeave={this.hideOption}
             >
                 <div>
-                    <img src={this.props.src} />
+                    <img src={this.src} />
                 </div>
                 <div
                     className={classNames(style.right, style.drag)}

@@ -163,7 +163,8 @@ export default class CustomImageEditor extends Component {
                     component: Media,
                     editable: false,
                     props: {
-                        onChangeSize: (blockKey, newContentState) => {
+                        onChangeSize: (blockKey, imgWidth) => {
+                            console.log(110, blockKey, imgWidth)
                             // var {liveTeXEdits} = this.state;
                             // this.setState({
                             //     liveTeXEdits: liveTeXEdits.remove(blockKey),

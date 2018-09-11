@@ -131,6 +131,7 @@ class PluginEditor extends Component {
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
+    console.log(999, newArgs)
 
     return plugins.some((plugin) =>
       typeof plugin[methodName] === 'function'
@@ -233,6 +234,7 @@ class PluginEditor extends Component {
     fnHookKeys.forEach((attrName) => {
       pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
     });
+    console.log(7788, pluginHooks)
 
     return pluginHooks;
   };

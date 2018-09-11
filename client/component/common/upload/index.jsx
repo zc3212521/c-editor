@@ -139,23 +139,25 @@ class UploadFile extends Component {
             token_key = "video"
         }
 
-        let properties = this.props, that = this, uploadProps = {
-            action: upUrl,
-            onChange: this.onChange.bind(this),
-            listType: 'picture',
-            fileList: this.state.files,
-            data: (file) => {//支持自定义保存文件名、扩展名支持
-                let token = that.state.qiniu.token, key = "";
-                if (!token) {
-                    token = PRO_QINIU.checkQiniu.returnToken(token_key);
-                }
-                key = file.keys;
-                return {token, key}
-            },
-            multiple: properties.isMultiple || false,
-            beforeUpload: this.beforeUpload.bind(this),
-            showUploadList: (properties.isShowUploadList === false) ? false : true,
-        };
+        let properties = this.props,
+            that = this,
+            uploadProps = {
+                action: upUrl,
+                onChange: this.onChange.bind(this),
+                listType: 'picture',
+                fileList: this.state.files,
+                data: (file) => {//支持自定义保存文件名、扩展名支持
+                    let token = that.state.qiniu.token, key = "";
+                    if (!token) {
+                        token = PRO_QINIU.checkQiniu.returnToken(token_key);
+                    }
+                    key = file.keys;
+                    return {token, key}
+                },
+                multiple: properties.isMultiple || false,
+                beforeUpload: this.beforeUpload.bind(this),
+                showUploadList: (properties.isShowUploadList === false) ? false : true,
+            };
         return (
             <Upload {...uploadProps}>
                 {this.props.children}

@@ -4,6 +4,7 @@ import ImgDec from 'component/decorators/img'
 const Media = (props) => {
     console.log(111, props.blockProps)
     const onRemove = props.blockProps.onRemove
+    const onChangeSize = props.blockProps.onChangeSize
     const entity = props.contentState.getEntity(
         props.block.getEntityAt(0)
     );
@@ -15,7 +16,7 @@ const Media = (props) => {
         media = <Audio src={src} />;
     }
     else if (type === 'IMG') {
-        media = <ImgDec src={src} remove={onRemove} block={props.block}/>
+        media = <ImgDec src={src} remove={onRemove} changeSize={onChangeSize} block={props.block}/>
     }
     else if (type === 'video') {
         media = <Video src={src} />;

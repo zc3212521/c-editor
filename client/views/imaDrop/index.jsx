@@ -219,7 +219,6 @@ export default class CustomImageEditor extends Component {
     render() {
         return (
             <div style={{padding: '50px'}}>
-                <Link to="/draft">123</Link>
                 <div className={editorStyles.editor} onClick={this.focus}>
                     <Editor
                         customStyleMap={colors}

@@ -68,7 +68,6 @@ export default ({mediaType, children, title=''}) => (
             picList.map((item, i) => {
                 setTimeout(() => {
                     let editorState = this.props.modifier(mediaType, this.props.getEditorState(), item, {name: 'haha'})
-                    console.log(4545, mediaType, this.props.getEditorState().toJS(), item);
                     this.props.setEditorState(editorState)
                 }, i*100)
             })

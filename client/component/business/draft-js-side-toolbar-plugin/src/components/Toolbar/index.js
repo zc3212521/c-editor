@@ -38,8 +38,15 @@ export default class Toolbar extends React.Component {
     setTimeout(() => {
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
         let top;
-        console.log('node', node)
-        if(node === undefined || node.tagName === 'figure') return false;
+        console.log('node', node.tagName)
+        if(node === undefined || node.tagName === 'FIGURE') {
+          this.setState({
+              position: {
+                  transform: 'scale(0)',
+              }
+          })
+            return false
+        }
         switch(node.tagName){
             case 'H1' :
               top = node.getBoundingClientRect().top + 6;

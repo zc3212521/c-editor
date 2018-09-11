@@ -1,6 +1,7 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import addImage from './modifiers/addImage';
-import ImageComponent from './Image';
+import removeImg from './modifiers/removeImage';
+import ImageComponent from '../../../decorators/img';
 import VideoComponent from './Video';
 import AudioComponent from './Audio';
 import imageStyles from './imageStyles.css';
@@ -21,9 +22,10 @@ export default (config = {}) => {
   const ThemedAudio = decorateComponentWithProps(Audio, { theme });
   const ThemedVideo = decorateComponentWithProps(Video, { theme });
   return {
-    blockRendererFn: (block, { getEditorState }) => {
+    blockRendererFn: (block, { getEditorState, setEditorState }) => {
       if (block.getType() === 'atomic') {
-        const contentState = getEditorState().getCurrentContent();
+        const editorState = getEditorState()
+        const contentState = editorState.getCurrentContent();
         const entity = block.getEntityAt(0);
         if (!entity) return null;
         const type = contentState.getEntity(entity).getType();
@@ -31,6 +33,12 @@ export default (config = {}) => {
           return {
             component: ThemedImage,
             editable: false,
+              props: {
+                  onChangeSize: (blockKey, imgWidth) => {
+                      console.log(110, blockKey, imgWidth)
+                  },
+                  onRemove: (blockKey) => removeImg(blockKey, editorState, setEditorState),
+              },
           };
         }
         if(type === 'audio') {
