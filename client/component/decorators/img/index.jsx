@@ -46,15 +46,23 @@ export default class imgDec extends React.Component {
             startDrag: true,
             startX: e.clientX,
         })
+        this.props.blockProps.onStartChange(this.props.block.getKey());
     }
 
     endDrag = (e) => {
         e.preventDefault()
+        let entityKey = this.props.block.getEntityAt(0);
+        let newContentState = this.props.contentState.mergeEntityData(
+            entityKey,
+            {width: this.state.imgWidth},
+        );
+        console.log(119, newContentState.getEntity(entityKey))
         this.setState({
             startDrag: false,
             imgCurrentWidth: this.state.imgWidth
         })
-        this.props.blockProps.onChangeSize(this.props.block.getKey(), this.state.imgWidth);
+        console.log(200)
+        this.props.blockProps.onChangeSize(newContentState, this.state.imgWidth);
 
     }
 

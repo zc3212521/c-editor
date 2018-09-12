@@ -4,7 +4,7 @@ import { RichUtils } from 'draft-js';
 import unionClassNames from 'union-class-names';
 import { Button } from 'antd'
 
-export default ({ style, children }) => (
+export default ({ style, children, title }) => (
   class InlineStyleButton extends Component {
 
     toggleStyle = (event) => {
@@ -31,6 +31,7 @@ export default ({ style, children }) => (
           onMouseDown={this.preventBubblingUp}
         >
             <Button
+                title={title}
                 type={className}
                 onClick={this.toggleStyle}
                 children={children}

@@ -65,7 +65,7 @@ const inlineToolbarPlugin = createInlineToolbarPlugin({
         CodeButton,
         linkPlugin.LinkButton,
         Separator,
-        ColorsButton,
+        // ColorsButton,
     ],
     // customStyleMap: colors  //todo not work
 });

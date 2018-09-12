@@ -5,6 +5,7 @@ import ImageComponent from '../../../decorators/img';
 import VideoComponent from './Video';
 import AudioComponent from './Audio';
 import imageStyles from './imageStyles.css';
+import { EditorState } from 'draft-js'
 
 const defaultTheme = {
   image: imageStyles.image,
@@ -22,7 +23,7 @@ export default (config = {}) => {
   const ThemedAudio = decorateComponentWithProps(Audio, { theme });
   const ThemedVideo = decorateComponentWithProps(Video, { theme });
   return {
-    blockRendererFn: (block, { getEditorState, setEditorState }) => {
+    blockRendererFn: (block, { getEditorState, setEditorState, getReadOnly, setReadOnly }) => {
       if (block.getType() === 'atomic') {
         const editorState = getEditorState()
         const contentState = editorState.getCurrentContent();
@@ -34,8 +35,15 @@ export default (config = {}) => {
             component: ThemedImage,
             editable: false,
               props: {
-                  onChangeSize: (blockKey, imgWidth) => {
-                      console.log(110, blockKey, imgWidth)
+                  onChangeSize: (newContentState) => {
+                      setReadOnly(false)
+                      let newEditorState = EditorState.createWithContent(newContentState)
+                      console.log(300, newEditorState)
+                      setEditorState(newEditorState)
+                  },
+                  onStartChange: (blockKey) => {
+                      setReadOnly(true)
+                    console.log(102, getReadOnly())
                   },
                   onRemove: (blockKey) => removeImg(blockKey, editorState, setEditorState),
               },

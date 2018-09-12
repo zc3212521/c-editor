@@ -41,6 +41,7 @@ export default class LinkButton extends Component {
         onMouseDown={this.onMouseDown}
       >
         <Button
+            title="添加链接"
           type={className}
           onClick={hasLinkSelected ? onRemoveLinkAtSelection : this.onAddLinkClick}
           style={{width:'36px', height:'36px', fontSize:'0', padding:'0'}}

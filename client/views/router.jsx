@@ -3,23 +3,12 @@ import {
     BrowserRouter as Router, Route, Link
 } from 'react-router-dom'
 
-import draft from '../views/draft/index'
-import imaDrop from '../views/imaDrop/index'
+import imaDrop from '../views/editor/index'
 
 export default () => (
     <Router>
        <div>
-           <ul>
-               <li>
-                   <Link to="/">Home</Link>
-               </li>
-               <li>
-                   <Link to="/draft">draft</Link>
-               </li>
-           </ul>
-           <hr/>
-           <Route path="/" component={ draft}  exact/>
-           <Route path="/draft" component={imaDrop} />
+           <Route path="/" component={ imaDrop}  exact/>
        </div>
     </Router>
 )

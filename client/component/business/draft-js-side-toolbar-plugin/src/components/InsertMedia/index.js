@@ -8,12 +8,16 @@ import WhatmarkImg from './addWatermarkImg'
 
 import MediaTypeSelect from './MediaTypeSelect';
 
+let structure = [Img,
+    // WhatmarkImg,
+    Video, Audio]
+
 const InsertMedia = ({ getEditorState, setEditorState, theme, modifier }) => (
     <MediaTypeSelect
         getEditorState={getEditorState}
         setEditorState={setEditorState}
         theme={theme}
-        structure={[Img, WhatmarkImg, Video, Audio]}
+        structure={structure}
         modifier={modifier}
     />
 );
