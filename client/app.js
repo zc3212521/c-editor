@@ -9,7 +9,7 @@ import App from './views/App.jsx'
 import configureStore from './store/store'
 const store = configureStore({}, 'client')
 
-console.log("process.env.NODE_ENV = ", process.env.NODE_ENV)
+// console.log("process.env.NODE_ENV = ", process.env.NODE_ENV)
 
 const root = document.getElementById('root')
 const render = (Component, renderMethod = "render") => {

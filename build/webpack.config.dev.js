@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
+const HTMLPlugin = require('html-webpack-plugin')
 
 const config = webpackMerge(baseConfig, {
     mode : 'development',
@@ -10,6 +11,10 @@ const config = webpackMerge(baseConfig, {
             'react-hot-loader/patch',
             path.join(__dirname, '../client/app.js')
         ]
+    },
+    output: {
+        path: path.join(__dirname, '../dist'),
+        filename: 'index.js',
     },
     devServer: {
         host: '0.0.0.0',
@@ -24,7 +29,10 @@ const config = webpackMerge(baseConfig, {
         }
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HTMLPlugin({
+            template: path.join(__dirname, '../client/template.html')
+        })
     ]
 })
 

@@ -38,12 +38,10 @@ export default (config = {}) => {
                   onChangeSize: (newContentState) => {
                       setReadOnly(false)
                       let newEditorState = EditorState.createWithContent(newContentState)
-                      console.log(300, newEditorState)
                       setEditorState(newEditorState)
                   },
-                  onStartChange: (blockKey) => {
+                  onStartChange: () => {
                       setReadOnly(true)
-                    console.log(102, getReadOnly())
                   },
                   onRemove: (blockKey) => removeImg(blockKey, editorState, setEditorState),
               },

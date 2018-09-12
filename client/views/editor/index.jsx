@@ -23,7 +23,7 @@ import createInlineToolbarPlugin, {Separator} from 'component/business/draft-js-
 
 import createLinkPlugin from 'component/business/draft-js-anchor-plugin/src';
 
-import ColorsButton from './ColorsToggle';
+// import ColorsButton from './ColorsToggle';
 
 import editorStyles from './editorStyles.css';
 
@@ -81,86 +81,24 @@ const plugins = [
     linkPlugin,
 ];
 
-/* eslint-disable */
-const initialState = {
-    "entityMap": {
-        "0": {
-            "type": "image",
-            "mutability": "IMMUTABLE",
-            "data": {
-                "src": "https://wscdn.ql1d.com/31999134935610288861.jpg"
-            }
-        },
-        "1": {
-            "type": "image",
-            "mutability": "IMMUTABLE",
-            "data": {
-                "src": "https://wscdn.ql1d.com/63176873725799917118.jpg"
-            }
-        }
-    },
-    "blocks": [
-        {
-            "key": "9gm3s",
-            "text": "你可以上下移动光标，查看左侧菜单可以跟随光标位置",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [],
-            "data": {}
-        }, {
-            "key": "9gm88",
-            "text": "你可以选中文字，将展示行内编辑菜单栏",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [],
-            "data": {}
-        },{
-            "key": "ov7r",
-            "text": " ",
-            "type": "atomic",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [{
-                "offset": 0,
-                "length": 1,
-                "key": 0
-            }],
-            "data": {}
-        }, {
-            "key": "e23a8",
-            "text": "图片可拖动进行位置变换",
-            "type": "unstyled",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [],
-            "data": {}
-        }, {
-            "key": "ovkl",
-            "text": " ",
-            "type": "atomic",
-            "depth": 0,
-            "inlineStyleRanges": [],
-            "entityRanges": [{
-                "offset": 0,
-                "length": 1,
-                "key": 1
-            }],
-            "data": {}
-        },]
-};
-/* eslint-enable */
 
 let HTML = '';
 
 // let contentState = stateFromHTML(HTML);
 
-export default class CustomImageEditor extends Component {
-    state = {
-        editorState: EditorState.createWithContent(convertFromRaw(initialState)),
-        toHTML: '',
-    };
+ class Zeditor extends Component {
+    constructor(props) {
+        super(props)
+
+        let init_editorState = props.initialState ? EditorState.createWithContent(convertFromRaw(props.initialState)) : EditorState.createEmpty()
+
+        this.state = {
+            editorState: init_editorState,
+            toHTML: '',
+        };
+
+    }
+
 
     onChange = (editorState) => {
         let obj = {};
@@ -210,6 +148,8 @@ export default class CustomImageEditor extends Component {
             toHTML: html,
         });
 
+        this.props.toHtml(html);
+
     };
 
     focus = () => {
@@ -228,13 +168,14 @@ export default class CustomImageEditor extends Component {
                         ref={(element) => {
                             this.editor = element;
                         }}
-                        placeholder="美好的一天从书写开始..."
+                        placeholder={this.props.placeholder}
                     />
                     <SideToolbar modifier={imagePlugin.addImage}/>
                     <InlineToolbar/>
                 </div>
-                <div>{this.state.toHTML}</div>
             </div>
         );
     }
 }
+
+module.exports = Zeditor

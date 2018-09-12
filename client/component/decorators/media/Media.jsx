@@ -2,7 +2,7 @@ import React from 'react'
 import ImgDec from 'component/decorators/img'
 
 const Media = (props) => {
-    console.log(111, props.blockProps)
+    // console.log(111, props.blockProps)
     const onRemove = props.blockProps.onRemove
     const onChangeSize = props.blockProps.onChangeSize
     const entity = props.contentState.getEntity(

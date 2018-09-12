@@ -20,7 +20,7 @@ export default class imgDec extends React.Component {
             props.block.getEntityAt(0)
         );
         this.src = this.entity.getData().src;
-        console.log(2323, props)
+        // console.log(2323, props)
     }
 
     componentDidMount() {
@@ -56,12 +56,12 @@ export default class imgDec extends React.Component {
             entityKey,
             {width: this.state.imgWidth},
         );
-        console.log(119, newContentState.getEntity(entityKey))
+        // console.log(119, newContentState.getEntity(entityKey))
         this.setState({
             startDrag: false,
             imgCurrentWidth: this.state.imgWidth
         })
-        console.log(200)
+        // console.log(200)
         this.props.blockProps.onChangeSize(newContentState, this.state.imgWidth);
 
     }
@@ -98,7 +98,7 @@ export default class imgDec extends React.Component {
     }
 
     remove = () => {
-        console.log("remove this image")
+        // console.log("remove this image")
         this.props.blockProps.onRemove(this.props.block.getKey());
     }
 

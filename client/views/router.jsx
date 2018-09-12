@@ -3,12 +3,12 @@ import {
     BrowserRouter as Router, Route, Link
 } from 'react-router-dom'
 
-import imaDrop from '../views/editor/index'
+import editor from './Demo'
 
 export default () => (
     <Router>
        <div>
-           <Route path="/" component={ imaDrop}  exact/>
+           <Route path="/" component={ editor }  exact/>
        </div>
     </Router>
 )

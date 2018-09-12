@@ -2,18 +2,15 @@ const path = require('path');
 const HTMLPlugin = require('html-webpack-plugin')
 
 const config = {
-    output: {
-        path: path.join(__dirname, '../dist'),
-        filename: '[name].[hash].js',
-        // publicPath: '/public/',
-    },
+
     module: {
         rules: [
             {
                 test: /.jsx?$/,
                 use: 'babel-loader',
                 exclude: [
-                    path.join(__dirname, '../node_modules')
+                    path.join(__dirname, '../node_modules'),
+                    path.join(__dirname, '../out'),
                 ]
             },
             {
@@ -56,11 +53,6 @@ const config = {
             'component': path.resolve(__dirname, '../client/component')
         }
     },
-    plugins: [
-        new HTMLPlugin({
-            template: path.join(__dirname, '../client/template.html')
-        })
-    ]
 }
 
 module.exports = config
