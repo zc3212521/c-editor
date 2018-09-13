@@ -23,7 +23,7 @@ import createInlineToolbarPlugin, {Separator} from 'component/business/draft-js-
 
 import createLinkPlugin from 'component/business/draft-js-anchor-plugin/src';
 
-// import ColorsButton from './ColorsToggle';
+import ColorsButton from './ColorsToggle';
 
 import editorStyles from './editorStyles.css';
 
@@ -64,8 +64,8 @@ const inlineToolbarPlugin = createInlineToolbarPlugin({
         UnderlineButton,
         CodeButton,
         linkPlugin.LinkButton,
-        Separator,
-        // ColorsButton,
+        // Separator,
+        ColorsButton,
     ],
     // customStyleMap: colors  //todo not work
 });

@@ -1,35 +1,97 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import "babel-polyfill"
-import {AppContainer} from 'react-hot-loader' //热更替相关
-import {BrowserRouter} from 'react-router-dom'
-import {Provider} from 'react-redux'
-import App from './views/App.jsx'
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
+import Zeditor from './views/editor'
+// import Zeditor from '../bundle/index'
 
-import configureStore from './store/store'
-const store = configureStore({}, 'client')
+class Demo extends Component {
+    constructor(props) {
+        super(props)
+        this.toHtml = this.toHtml.bind(this)
+    }
 
-// console.log("process.env.NODE_ENV = ", process.env.NODE_ENV)
+    toHtml(html) {
+        // console.log('html:', html)
+    }
 
-const root = document.getElementById('root')
-const render = (Component, renderMethod = "render") => {
-    ReactDOM[renderMethod](
-        <AppContainer>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Component/>
-                </BrowserRouter>
-            </Provider>
-        </AppContainer>,
-        root
-    );
+    render() {
+        const initialState = {
+            "entityMap": {
+                "0": {
+                    "type": "image",
+                    "mutability": "IMMUTABLE",
+                    "data": {
+                        "src": "https://wscdn.ql1d.com/31999134935610288861.jpg"
+                    }
+                },
+                "1": {
+                    "type": "image",
+                    "mutability": "IMMUTABLE",
+                    "data": {
+                        "src": "https://wscdn.ql1d.com/63176873725799917118.jpg"
+                    }
+                }
+            },
+            "blocks": [
+                {
+                    "key": "9gm3s",
+                    "text": "你可以上下移动光标，查看左侧菜单可以跟随光标位置",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }, {
+                    "key": "9gm88",
+                    "text": "你可以选中文字，将展示行内编辑菜单栏",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                },{
+                    "key": "ov7r",
+                    "text": " ",
+                    "type": "atomic",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [{
+                        "offset": 0,
+                        "length": 1,
+                        "key": 0
+                    }],
+                    "data": {}
+                }, {
+                    "key": "e23a8",
+                    "text": "图片可拖动进行位置变换",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }, {
+                    "key": "ovkl",
+                    "text": " ",
+                    "type": "atomic",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [{
+                        "offset": 0,
+                        "length": 1,
+                        "key": 1
+                    }],
+                    "data": {}
+                },]
+        };
+        return (
+            <div>
+                <p>123</p>
+                <Zeditor placeholder="hahaha..." initialState={initialState} toHtml={this.toHtml}/>
+            </div>
+        )
+    }
 }
 
-render(App)
-
-if (module.hot) {
-    module.hot.accept('./views/App.jsx', () => {
-        const NextApp = require('./views/App.jsx').default
-        render(NextApp, 'hydrate')
-    })
-}
+ReactDOM.render(
+    <Demo />,
+    document.getElementById('root')
+);

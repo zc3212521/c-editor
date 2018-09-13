@@ -10,7 +10,7 @@ const config = {
                 use: 'babel-loader',
                 exclude: [
                     path.join(__dirname, '../node_modules'),
-                    path.join(__dirname, '../out'),
+                    path.join(__dirname, '../bundle'),
                 ]
             },
             {

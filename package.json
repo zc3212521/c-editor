@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.config.dev.js",
-    "test": "npm run clean && webpack --config build/webpack.config.test.js",
-    "prod": "npm run clean && webpack --config build/webpack.config.prod.js",
-    "clean": "rimraf dist"
+    "public": "npm run clean && webpack --config build/webpack.config.public.js",
+    "clean": "rimraf dist && rimraf bundle"
   },
   "repository": {
     "type": "git",
@@ -82,6 +81,7 @@
     "url-loader": "^1.0.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.0",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }

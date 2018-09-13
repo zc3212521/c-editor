@@ -33,7 +33,7 @@ const config = webpackMerge(baseConfig, {
         new HTMLPlugin({
             template: path.join(__dirname, '../client/template.html')
         })
-    ]
+    ],
 })
 
 module.exports = config

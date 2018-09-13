@@ -102,10 +102,13 @@ export default class Toolbar extends React.Component {
       onOverrideContent: this.onOverrideContent
     };
 
+    const wrapperStyle = this.getStyle()
+      wrapperStyle.top =  OverrideContent ? wrapperStyle.top + 36 :  wrapperStyle.top // 添加链接更改toolBar位置
+
     return (
       <div
         className={theme.toolbarStyles.toolbar}
-        style={this.getStyle()}
+        style={wrapperStyle}
         ref={this.handleToolbarRef}
       >
         {OverrideContent
