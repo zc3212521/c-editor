@@ -124,6 +124,7 @@ let HTML = '';
                     };
                 }
                 if (entityType === 'video') {
+                    console.log(7788, entity.getData())
                     const data = entity.getData();
                     return {
                         element: 'video',

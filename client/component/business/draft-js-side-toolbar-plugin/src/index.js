@@ -34,9 +34,10 @@ export default (config = {}) => {
   };
 
   return {
-    initialize: ({ setEditorState, getEditorState, getEditorRef }) => {
+    initialize: ({ setEditorState, getEditorState, getEditorRef, setReadOnly }) => {
       store.updateItem('getEditorState', getEditorState);
       store.updateItem('setEditorState', setEditorState);
+      store.updateItem('setReadOnly', setReadOnly);
       store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the toolbar on every change

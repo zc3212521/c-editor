@@ -36,7 +36,7 @@ export default class BlockTypeSelect extends React.Component {
     }
 
     render() {
-        const { theme, getEditorState, setEditorState } = this.props;
+        const { theme, getEditorState, setEditorState, setReadOnly } = this.props;
         let spacer = "";
         if(this.state.onEnter) {
             spacer = <div className={theme.blockTypeSelectStyles.spacer} />
@@ -57,6 +57,7 @@ export default class BlockTypeSelect extends React.Component {
                             key={index}
                             getEditorState={getEditorState}
                             setEditorState={setEditorState}
+                            setReadOnly={setReadOnly}
                             theme={theme.buttonStyles}
                             modifier={this.props.modifier}
                         />

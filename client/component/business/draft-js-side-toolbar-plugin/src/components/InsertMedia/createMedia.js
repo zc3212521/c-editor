@@ -42,6 +42,8 @@ export default ({mediaType, children, title=''}) => (
                 up: true,
                 fileType: mediaType
             })
+            this.props.setReadOnly(true)
+
         }
 
         preventBubblingUp = (event) => {
@@ -71,6 +73,7 @@ export default ({mediaType, children, title=''}) => (
                     this.props.setEditorState(editorState)
                 }, i*100)
             })
+            this.props.setReadOnly(false)
         }
 
         startUpload(file) {
@@ -198,6 +201,7 @@ export default ({mediaType, children, title=''}) => (
 
         render() {
             const {theme} = this.props;
+            console.log(5566, this.props)
             const uploadConfig = PRO_QINIU.getUploadConfig("wangsu");
             const className = 'gost';
             if (mediaType === 'watermarkImage') {

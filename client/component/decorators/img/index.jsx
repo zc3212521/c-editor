@@ -56,7 +56,6 @@ export default class imgDec extends React.Component {
             entityKey,
             {width: this.state.imgWidth},
         );
-        // console.log(119, newContentState.getEntity(entityKey))
         this.setState({
             startDrag: false,
             imgCurrentWidth: this.state.imgWidth
@@ -108,7 +107,7 @@ export default class imgDec extends React.Component {
         return (
             <div
                 className={style.wrap}
-                style={{width: this.state.imgWidth}}
+                style={{width: this.state.imgWidth,cursor:'default'}}
                 onMouseEnter={this.showOption}
                 onMouseLeave={this.hideOption}
             >

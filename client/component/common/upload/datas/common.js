@@ -21,7 +21,6 @@ const commonFun = {
           //  console.log("xxxxx333",items,keys);
           //  console.log("keys paths[1]",keys,paths[1],keys==paths[1]);
           if(keys == paths[1]) {
-            //  console.log("111222",items,keys);
             forIn(items, function(itm, ky) {
 
               if(ky == paths[2]) {
