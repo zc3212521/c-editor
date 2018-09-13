@@ -88,6 +88,7 @@ export default class Toolbar extends React.Component {
             setReadOnly={store.getItem('setReadOnly')}
             theme={theme}
             modifier={this.props.modifier}
+            uploadProps={this.props.uploadProps}
           />
         ))}
       </div>

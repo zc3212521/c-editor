@@ -96,12 +96,6 @@ module.exports = {
       } else {
         url = WANGSU_VIDEO_TOKEN_URL;
       }
-      // else if (type == 'file') {
-      //   url = WANGSU_FILE_TOKEN_URL;
-      // }
-      // else if (type == 'manage') {
-      //   url = "QINIU_MANAGE_TOKEN_URL";
-      // }
 
       AJAX.requestData({
         url: url,

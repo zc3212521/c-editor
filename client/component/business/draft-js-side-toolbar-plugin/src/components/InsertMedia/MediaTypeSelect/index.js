@@ -60,6 +60,7 @@ export default class BlockTypeSelect extends React.Component {
                             setReadOnly={setReadOnly}
                             theme={theme.buttonStyles}
                             modifier={this.props.modifier}
+                            uploadProps={this.props.uploadProps}
                         />
                     ))}
                 </div>

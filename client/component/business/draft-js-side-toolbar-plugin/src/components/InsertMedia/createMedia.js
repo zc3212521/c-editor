@@ -201,57 +201,57 @@ export default ({mediaType, children, title=''}) => (
 
         render() {
             const {theme} = this.props;
-            console.log(5566, this.props)
-            const uploadConfig = PRO_QINIU.getUploadConfig("wangsu");
+            // console.log(5566, this.props)
+            // const uploadConfig = PRO_QINIU.getUploadConfig("wangsu");
             const className = 'gost';
-            if (mediaType === 'watermarkImage') {
-                let className = 'RichEditor-styleButton';
-                let that = this;
-                return (
-                    <div style={{display: 'inline-block'}}>
-                        <div
-                            className={theme.buttonWrapper}
-                            onMouseDown={this.preventBubblingUp}
-                        >
-                            <WatermarkImgUpload
-                                limitCount={50}
-                                imageList={this.state.images.map((item) => {
-                                    item.url
-                                })}
-                                atuoSize={[650, 0]}
-                                receiveSelectedPictures={this.groupAppend}
-                                uploadConfig={uploadConfig}
-                                down={this.state.down}
-                                reback={this.reback}
-                            >
-                                <Button
-                                    type={className}
-                                    children={children}
-                                    style={{width: '36px', height: '36px', padding: 0}}
-                                    title={title}
-                                />
-                            </WatermarkImgUpload>
-                        </div>
-
-                        <div
-                            style={{
-                                width: 0,
-                                height: 0,
-                                display: "inline",
-                                overflow: "hidden",
-                                position: "absolute"
-                            }}
-                        >
-                            {this.state.images.map((item, index) => <img
-                                key={index}
-                                style={{width: "100px"}} src={item.url}
-                                onError={(event) => this.failureLoading(event, index)}
-                                onLoad={() => this.successLoading(index)}/>)}
-
-                        </div>
-                    </div>
-                )
-            }
+            // if (mediaType === 'watermarkImage') {
+            //     let className = 'RichEditor-styleButton';
+            //     let that = this;
+            //     return (
+            //         <div style={{display: 'inline-block'}}>
+            //             <div
+            //                 className={theme.buttonWrapper}
+            //                 onMouseDown={this.preventBubblingUp}
+            //             >
+            //                 <WatermarkImgUpload
+            //                     limitCount={50}
+            //                     imageList={this.state.images.map((item) => {
+            //                         item.url
+            //                     })}
+            //                     atuoSize={[650, 0]}
+            //                     receiveSelectedPictures={this.groupAppend}
+            //                     uploadConfig={uploadConfig}
+            //                     down={this.state.down}
+            //                     reback={this.reback}
+            //                 >
+            //                     <Button
+            //                         type={className}
+            //                         children={children}
+            //                         style={{width: '36px', height: '36px', padding: 0}}
+            //                         title={title}
+            //                     />
+            //                 </WatermarkImgUpload>
+            //             </div>
+            //
+            //             <div
+            //                 style={{
+            //                     width: 0,
+            //                     height: 0,
+            //                     display: "inline",
+            //                     overflow: "hidden",
+            //                     position: "absolute"
+            //                 }}
+            //             >
+            //                 {this.state.images.map((item, index) => <img
+            //                     key={index}
+            //                     style={{width: "100px"}} src={item.url}
+            //                     onError={(event) => this.failureLoading(event, index)}
+            //                     onLoad={() => this.successLoading(index)}/>)}
+            //
+            //             </div>
+            //         </div>
+            //     )
+            // }
             return (
                 <div style={{display: 'inline-block'}}>
                     <div
@@ -265,7 +265,9 @@ export default ({mediaType, children, title=''}) => (
                             isShowUploadList={false}
                             fileType={this.state.fileType}
                             startUpload={this.startUpload}
-                            limit={20}>
+                            limit={20}
+                            uploadProps={this.props.uploadProps}
+                        >
                             <Button
                                 type={className}
                                 onClick={this.addMedia}

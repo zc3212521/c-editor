@@ -39,9 +39,9 @@ module.exports = {
     WANGSU: {
         // UP: 'http://dzcm.up0.v1.wcsapi.com/file/upload',
         UP: 'http://uploadfile.ql1d.com/file/upload', //上传加速服务修改上传地址
-        TOKEN: PRO_BASE.Config.server.ajaxup + "getWangsuUptoken.do",
+        TOKEN: "http://222.175.121.249:8082/qlwb/getWangsuUptoken.do",
         PFOP: {
-            url: PRO_BASE.Config.server.ajaxup + "wangsuPicPersist.do"//网宿持久保存请求地址
+            url: "http://222.175.121.249:8082/qlwb/wangsuPicPersist.do"//网宿持久保存请求地址
         },
         IMG_URL: 'https://wscdn.ql1d.com',
         IMG_DOMAIN_URL: "https://wscdn.ql1d.com", //图片文件地址的前缀

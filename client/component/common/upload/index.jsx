@@ -36,33 +36,33 @@ class UploadFile extends Component {
         }
     }
 
-    beforeUpload(file) {
-        // key需要唯一，此处不可使用直接获取的方式，否则会出现相同KEY if (!!this.props.limit && file.length > this.props.limit) {    // message.error("由于限制，您最多只能选择" + this.props.limit + "张图片，请重新选择。", 5);    return false; }    // console.log("key需要唯一，此处不可使用直接获取的方式，否则会出现相同KEY");
-        this.setState({
-            files:[]
-        },()=>{
-            let isFormat = PRO_COMMON.Array.inArray(PRO_QINIU.supportMime[this.props.fileType], file.type);
-            if (!isFormat) {
-                message.error('只能上传指定文件，请重新选择！参考 File Mimetype: ' + PRO_QINIU.supportMime[this.props.fileType].join("、"), 10);
-                return false;
-            }
-            if (!this.state.qiniu.token) {
-                let token = "";
-                if (this.props.Upurl === 'wangsu' || this.props.fileType === 'image') {
-                    token = PRO_QINIU.checkQiniu.returnToken();
-                }
-                if (this.props.fileType === "video" || this.props.fileType === "audio") {
-                    token = PRO_QINIU.checkQiniu.returnToken("video");
-                }
-                console.log("拿到请求" + this.props.fileType + '的token', token);
-                this.state.qiniu.token = token;
-            }
-            file.keys = PRO_COMMON.String.RndNum(20) + "." + PRO_COMMON.String.GetFileExtensionName(file.name)[0];
-
-            return isFormat;
-        })
-        message.info('上传中。。。')
-    }
+    // beforeUpload(file) {
+    //     // key需要唯一，此处不可使用直接获取的方式，否则会出现相同KEY if (!!this.props.limit && file.length > this.props.limit) {    // message.error("由于限制，您最多只能选择" + this.props.limit + "张图片，请重新选择。", 5);    return false; }    // console.log("key需要唯一，此处不可使用直接获取的方式，否则会出现相同KEY");
+    //     this.setState({
+    //         files:[]
+    //     },()=>{
+    //         let isFormat = PRO_COMMON.Array.inArray(PRO_QINIU.supportMime[this.props.fileType], file.type);
+    //         if (!isFormat) {
+    //             message.error('只能上传指定文件，请重新选择！参考 File Mimetype: ' + PRO_QINIU.supportMime[this.props.fileType].join("、"), 10);
+    //             return false;
+    //         }
+    //         if (!this.state.qiniu.token) {
+    //             let token = "";
+    //             if (this.props.Upurl === 'wangsu' || this.props.fileType === 'image') {
+    //                 token = PRO_QINIU.checkQiniu.returnToken();
+    //             }
+    //             if (this.props.fileType === "video" || this.props.fileType === "audio") {
+    //                 token = PRO_QINIU.checkQiniu.returnToken("video");
+    //             }
+    //             console.log("拿到请求" + this.props.fileType + '的token', token);
+    //             this.state.qiniu.token = token;
+    //         }
+    //         file.keys = PRO_COMMON.String.RndNum(20) + "." + PRO_COMMON.String.GetFileExtensionName(file.name)[0];
+    //
+    //         return isFormat;
+    //     })
+    //     message.info('上传中。。。')
+    // }
 
     onChange(info) {
         let fileList = cloneDeep(info.fileList);
@@ -128,38 +128,38 @@ class UploadFile extends Component {
     }
 
     render() {
-        let upUrl = PRO_URL.WANGSU.UP;
-        let token_key = 'image';
-        if (this.props.Upurl === 'wangsu') {
-            upUrl = PRO_URL.WANGSU.UP;
-        }
+        // let upUrl = PRO_URL.WANGSU.UP;
+        // let token_key = 'image';
+        // if (this.props.Upurl === 'wangsu') {
+        //     upUrl = PRO_URL.WANGSU.UP;
+        // }
+        //
+        // if (this.props.fileType === "video" || this.props.fileType === "audio") {
+        //     upUrl = PRO_URL.WANGSU.UP;
+        //     token_key = "video"
+        // }
 
-        if (this.props.fileType === "video" || this.props.fileType === "audio") {
-            upUrl = PRO_URL.WANGSU.UP;
-            token_key = "video"
-        }
-
-        let properties = this.props,
-            that = this,
-            uploadProps = {
-                action: upUrl,
-                onChange: this.onChange.bind(this),
-                listType: 'picture',
-                fileList: this.state.files,
-                data: (file) => {//支持自定义保存文件名、扩展名支持
-                    let token = that.state.qiniu.token, key = "";
-                    if (!token) {
-                        token = PRO_QINIU.checkQiniu.returnToken(token_key);
-                    }
-                    key = file.keys;
-                    return {token, key}
-                },
-                multiple: properties.isMultiple || false,
-                beforeUpload: this.beforeUpload.bind(this),
-                showUploadList: (properties.isShowUploadList === false) ? false : true,
-            };
+        // let that = this,
+        //     uploadProps = {
+        //         action: upUrl,
+        //         onChange: this.onChange.bind(this),
+        //         listType: 'picture',
+        //         fileList: this.state.files,
+        //         data: (file) => {//支持自定义保存文件名、扩展名支持
+        //             let token = that.state.qiniu.token, key = "";
+        //             if (!token) {
+        //                 token = PRO_QINIU.checkQiniu.returnToken(token_key);
+        //             }
+        //             key = file.keys;
+        //             return {token, key}
+        //         },
+        //         multiple:true,
+        //         beforeUpload: this.beforeUpload.bind(this),
+        //         showUploadList: false,
+        //     };
+        const uploadProps = this.props.uploadProps
         return (
-            <Upload {...uploadProps}>
+            <Upload {...uploadProps} fileList={this.state.files} onChange={this.onChange.bind(this)}>
                 {this.props.children}
             </Upload>
         )
