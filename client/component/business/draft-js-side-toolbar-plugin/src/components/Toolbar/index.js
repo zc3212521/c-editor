@@ -89,6 +89,7 @@ export default class Toolbar extends React.Component {
             theme={theme}
             modifier={this.props.modifier}
             uploadProps={this.props.uploadProps}
+            receiveUpFileType={this.props.receiveUpFileType}
           />
         ))}
       </div>

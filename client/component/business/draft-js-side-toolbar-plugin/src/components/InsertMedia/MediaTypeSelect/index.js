@@ -61,6 +61,7 @@ export default class BlockTypeSelect extends React.Component {
                             theme={theme.buttonStyles}
                             modifier={this.props.modifier}
                             uploadProps={this.props.uploadProps}
+                            receiveUpFileType={this.props.receiveUpFileType}
                         />
                     ))}
                 </div>

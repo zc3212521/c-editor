@@ -43,6 +43,7 @@ export default ({mediaType, children, title=''}) => (
                 fileType: mediaType
             })
             this.props.setReadOnly(true)
+            this.props.receiveUpFileType(mediaType)
 
         }
 

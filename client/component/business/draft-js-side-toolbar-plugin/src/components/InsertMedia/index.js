@@ -12,7 +12,7 @@ let structure = [Img,
     // WhatmarkImg,
     Video, Audio]
 
-const InsertMedia = ({ getEditorState, setEditorState, setReadOnly, theme, modifier, uploadProps }) => {
+const InsertMedia = ({ getEditorState, setEditorState, setReadOnly, theme, modifier, uploadProps, receiveUpFileType }) => {
     return (
         <MediaTypeSelect
             getEditorState={getEditorState}
@@ -22,6 +22,7 @@ const InsertMedia = ({ getEditorState, setEditorState, setReadOnly, theme, modif
             structure={structure}
             modifier={modifier}
             uploadProps={uploadProps}
+            receiveUpFileType={receiveUpFileType}
         />
     )
 };

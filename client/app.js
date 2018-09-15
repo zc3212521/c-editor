@@ -50,8 +50,6 @@ function inArray(arr, value) {
     return false;
 }
 
-const upUrl = 'http://uploadfile.ql1d.com/file/upload'
-
 const fetchData = (url, data = {}, doProcess, onCatch = (e) => {console.warn("服务器或接口返回出错或数据处理过程中出错，参考：", e)}) => {
     let tokenName = 'tokenID';
 
@@ -215,7 +213,6 @@ class Demo extends Component {
     }
 
     getQiniuToken(type = 'image',params) {
-        console.log("getQiniuToken",type);
         let token = "";
         let url=  tokenUrl.default;
         if (type === 'image') {
@@ -225,7 +222,6 @@ class Demo extends Component {
         }
 
         fetchData(url, params, (data) => {
-            console.log("get data:", data)
             token = data.uptoken;
             localStorage.setItem("qiniu_" + type + "_token", token);
             localStorage.setItem("last_qiniu_token_time_" + type, Date.parse(new Date()) / 1000);
@@ -245,13 +241,6 @@ class Demo extends Component {
                         "src": "https://wscdn.ql1d.com/31999134935610288861.jpg"
                     }
                 },
-                "1": {
-                    "type": "image",
-                    "mutability": "IMMUTABLE",
-                    "data": {
-                        "src": "https://wscdn.ql1d.com/63176873725799917118.jpg"
-                    }
-                }
             },
             "blocks": [
                 {
@@ -284,53 +273,43 @@ class Demo extends Component {
                     "data": {}
                 }, {
                     "key": "e23a8",
-                    "text": "图片可拖动进行位置变换",
+                    "text": "将鼠标移到图片上，可进行调整大小和移除操作",
                     "type": "unstyled",
                     "depth": 0,
                     "inlineStyleRanges": [],
                     "entityRanges": [],
                     "data": {}
-                }, {
-                    "key": "ovkl",
-                    "text": " ",
-                    "type": "atomic",
-                    "depth": 0,
-                    "inlineStyleRanges": [],
-                    "entityRanges": [{
-                        "offset": 0,
-                        "length": 1,
-                        "key": 1
-                    }],
-                    "data": {}
                 },]
         };
 
         const uploadProps = {
-            action: upUrl,
+            action: 'http://uploadfile.ql1d.com/file/upload',
             data: (file) => {//支持自定义保存文件名、扩展名支持
                 let token = this.state.upToken, key = "";
                 if (!token) {
                     token = this.returnToken();
                 }
                 key = file.keys;
-                console.log('file-token:', token)
-                console.log('file-key:', key)
                 return {token, key}
             },
             multiple: true,
             beforeUpload: this.beforeUpload,
-            showUploadList: false,
+            queryFilePrefix: {
+                img: 'https://wscdn.ql1d.com',
+                video: 'https://wsqlydvideo.ql1d.com',
+                audio: 'https://wsqlydvideo.ql1d.com',
+            }
         }
 
 
         return (
             <div>
                 <Zeditor
-                    placeholder="hahaha..."
+                    placeholder="告诉我你的故事..."
                     initialState={initialState}
                     toHtml={this.toHtml}
-                    uploadProps={uploadProps}
-                    receiveUpFileType={this.receiveUpFileType}
+                    uploadProps={uploadProps} // 上传配置
+                    receiveUpFileType={this.receiveUpFileType} //点击上传图片，音频，视频的回调，返回点击按钮的类型
                 />
                 <p>{this.state.html}</p>
             </div>

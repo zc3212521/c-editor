@@ -171,7 +171,11 @@ let HTML = '';
                         }}
                         placeholder={this.props.placeholder}
                     />
-                    <SideToolbar modifier={imagePlugin.addImage} uploadProps={this.props.uploadProps} />
+                    <SideToolbar
+                        modifier={imagePlugin.addImage}
+                        uploadProps={this.props.uploadProps}
+                        receiveUpFileType={this.props.receiveUpFileType}
+                    />
                     <InlineToolbar/>
                 </div>
             </div>
