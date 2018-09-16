@@ -196,7 +196,7 @@ class Demo extends Component {
             "blocks": [
                 {
                     "key": "9gm3s",
-                    "text": "你可以上下移动光标，查看左侧菜单可以跟随光标位置",
+                    "text": "hello world!",
                     "type": "unstyled",
                     "depth": 0,
                     "inlineStyleRanges": [],
@@ -204,7 +204,7 @@ class Demo extends Component {
                     "data": {}
                 }, {
                     "key": "9gm88",
-                    "text": "你可以选中文字，将展示行内编辑菜单栏",
+                    "text": "Had I not seen the Sun",
                     "type": "unstyled",
                     "depth": 0,
                     "inlineStyleRanges": [],
@@ -224,7 +224,7 @@ class Demo extends Component {
                     "data": {}
                 }, {
                     "key": "e23a8",
-                    "text": "将鼠标移到图片上，可进行调整大小和移除操作",
+                    "text": "nice day",
                     "type": "unstyled",
                     "depth": 0,
                     "inlineStyleRanges": [],
@@ -256,7 +256,7 @@ class Demo extends Component {
         return (
             <div>
                 <Zeditor
-                    placeholder="告诉我你的故事..."
+                    placeholder="美好的一天从书写开始..."
                     initialState={initialState}
                     toHtml={this.toHtml}
                     uploadProps={uploadProps} // 上传配置
