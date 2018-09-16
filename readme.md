@@ -63,28 +63,7 @@ const uploadProps = {
 ```
 
 ```
-this.beforeUpload = () =>  {
-                                  this.setState({
-                                      files: []
-                                  }, () => {
-
-                                      if (!this.state.upToken) {
-                                          let token = "";
-                                          if (this.state.upFileType === 'image') {
-                                              token = this.returnToken();
-                                          }
-                                          if (this.state.upFileType === "video" || this.state.upFileType === "audio") {
-                                              token = this.returnToken("video");
-                                          }
-
-                                          this.setState({
-                                              upToken: token
-                                          })
-                                      }
-                                      file.keys =RndNum(20) + "." + GetFileExtensionName(file.name)[0];
-
-                                      return isFormat;
-                                  })
-                                  message.info('上传中。。。')
+this.beforeUpload = (files) =>  {
+                                  console.log(files)
                               }
 ```

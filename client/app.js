@@ -138,55 +138,6 @@ class Demo extends Component {
         message.info('上传中。。。')
     }
 
-    // onChange(info) {
-    //     let fileList = cloneDeep(info.fileList);
-    //     let upload_status = "begin";
-    //     fileList = uniqBy(fileList, "name"); //去除重复的文件
-    //     console.log('onchange', info)
-    //
-    //     //图片上传错误
-    //     if (fileList.some((item, index) => item.status === "error")) {
-    //         message.error("上传未成功，请重试", 5)
-    //         this.setState({files: []})
-    //     }
-    //
-    //     //图片上传中
-    //     if (fileList.some((item, index) => item.status === "uploading")) {
-    //         console.log("文件正在上传，上传文件:", info.fileList)
-    //         this.setState({files: fileList})
-    //         if (upload_status === 'begin') {
-    //             upload_status = "";
-    //         }
-    //     }
-    //
-    //     //图片全部上传完成
-    //     if (fileList.every((item, index) => item.status === "done")) {
-    //         let _this = this;
-    //         //是否超出上传数量
-    //         if (!!_this.state.limit && fileList.length > _this.state.limit) {
-    //             message.info(`只能保留最后上传的 ${_this.state.limit} 个文件，其他超出的已经被顶掉。`, 5);
-    //             fileList = fileList.slice(fileList.length - _this.state.limit);
-    //         }
-    //         let url = "";
-    //         if (this.state.fileType === "image") {
-    //             url = PRO_URL.WANGSU_IMG_DOMAIN_URL;
-    //         } else if (this.state.fileType === "video" || this.state.fileType === "audio") {
-    //             url = PRO_URL.WANGSU_DOMAIN_VIDEO_URL;
-    //         }
-    //         console.log("请求文件前缀", url)
-    //         //读取远程路径并显示链接
-    //         fileList.forEach((file) => {
-    //             file.url = url + "/" + file.originFileObj.keys;
-    //         });
-    //         console.log('加入url参数', fileList)
-    //         _this.setState({files: fileList})
-    //         _this.forceUpdate();
-    //         console.log("准备上传给父组件", _this.state.files)
-    //         _this.props.cbReceiver(_this.state.files);
-    //         message.destroy();
-    //     }
-    // }
-
     returnToken (key = 'image',params={}) {
         let token = this.checkQiniuImgToken(key);
         token = !!token === true
