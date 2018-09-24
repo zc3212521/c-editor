@@ -2,6 +2,8 @@
 
 > 基于 draftjs 的一款富文本编辑器
 
+[demo演示](https://zc3212521.github.io/appBuild/)
+
 ### 功能介绍
 
 1. 侧边栏实现块元素的样式修改和文件上传的功能，上传只支持类似第三方（七牛，网宿cdn）模式。
@@ -14,6 +16,20 @@
 
 ```
     npm i z-react-editor -S
+```
+
+### 使用
+
+```
+import Zeditor from 'z-react-editor'
+
+<Zeditor
+     placeholder="美好的一天从书写开始..."
+     toHtml={this.toHtml}
+     uploadProps={uploadProps} // 上传配置
+     receiveUpFileType={this.receiveUpFileType} //点击上传图片，音频，视频的回调，返回点击按钮的类型
+/>
+
 ```
 
 ### 配置
