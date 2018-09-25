@@ -1,6 +1,6 @@
 # z-react-editor 富文本编辑器
 
-> 基于 draftjs 的一款富文本编辑器
+> 基于 draft-plugins-editor 的一款富文本编辑器
 
 [demo演示](https://zc3212521.github.io/appBuild/)
 
