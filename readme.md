@@ -4,7 +4,7 @@
 
 [demo演示](https://zc3212521.github.io/appBuild/)
 
-![](https://wscdn.ql1d.com/58180107310959303668.gif)
+![](http://note.youdao.com/yws/res/1057/WEBRESOURCE655b1c6fabace97b51f0f6c3cc110338)
 
 ### 功能介绍
 
